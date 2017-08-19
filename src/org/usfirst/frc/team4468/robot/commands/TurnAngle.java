@@ -30,7 +30,6 @@ public class TurnAngle extends Command {
 		pid = new PIDController(0.5, 0, 0, Robot.drive.gyro, pidOut);
 		pid.setContinuous();
 		pid.setTolerance(2);
-		pid.setSetpoint(angle);
 	}
 
 	protected void initialize() {
@@ -39,7 +38,11 @@ public class TurnAngle extends Command {
 	}
 	
 	@Override
-	protected void execute() {}
+	protected void execute() {
+		pid.setSetpoint(angle);
+        System.out.println("Angle Error: " + pid.getError() + "\n");
+        System.out.println("Result: " + pid.get() + "\n");
+	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
@@ -53,7 +56,6 @@ public class TurnAngle extends Command {
 	protected void end() {
 		pid.disable();
 		Robot.drive.stop();
-		Robot.drive.encoderReset();
 	}
 	
 	protected void iterrupted() {

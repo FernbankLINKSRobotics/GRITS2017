@@ -95,6 +95,7 @@ public class Robot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -112,6 +113,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+		climb.climb2.set(-1);
 	}
 	
 	private void log() {

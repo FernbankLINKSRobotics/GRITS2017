@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.*;
 public class Climber extends Subsystem {
 	
 	private VictorSP climb1 = new VictorSP(6);
-	private VictorSP climb2 = new VictorSP(7);
+	public VictorSP climb2 = new VictorSP(7); //make it private when done
 	
 	private PWMSpeedController[] motors = {climb1, climb2};
 

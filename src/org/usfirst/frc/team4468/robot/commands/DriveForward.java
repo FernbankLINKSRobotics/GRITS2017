@@ -12,14 +12,14 @@ public class DriveForward extends Command {
 	private double distanceDriven;
 	private double distance;
 	
-	private PIDController pid;
+	public PIDController pid;
 	private PIDOutput pidOut;
 	
 	@SuppressWarnings("deprecation")
 	public DriveForward(double dir) {
 		requires(Robot.drive);
 		
-		distance = Robot.drive.getDistance();
+		distanceDriven = Robot.drive.getDistance();
 		distance = dir;
 		
 		pidOut = new PIDOutput() {
@@ -30,19 +30,25 @@ public class DriveForward extends Command {
 		};
 		
 		pid = new PIDController(0.5, 0, 0, Robot.drive.leftEncoder, pidOut);
-		pid.setTolerance(2);
+		pid.setTolerance(0.5);
 		pid.setContinuous();
 	}
-
+	
+	protected void initialize() {
+		//pid.reset();
+        pid.enable();
+	}
+	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		pid.setSetpoint(distanceDriven);
+		pid.setSetpoint(distance);
 	}
-
+	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
+	
 		boolean isThere = distance - (distanceDriven - Robot.drive.getDistance()) == 0;
 		SmartDashboard.putString("Distance Reached Yet: ", Boolean.toString(isThere));
 		return isThere;
@@ -51,6 +57,7 @@ public class DriveForward extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+		pid.reset();
 		Robot.drive.stop();
 	}
 }
