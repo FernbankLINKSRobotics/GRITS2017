@@ -29,7 +29,7 @@ public class DriveForward extends Command {
 			}
 		};
 		
-		pid = new PIDController(0.5, 0, 0, Robot.drive.leftEncoder, pidOut);
+		pid = new PIDController(0.005, 0, 0.01, Robot.drive.leftEncoder, pidOut);
 		pid.setTolerance(0.5);
 		pid.setContinuous();
 	}
@@ -43,6 +43,10 @@ public class DriveForward extends Command {
 	@Override
 	protected void execute() {
 		pid.setSetpoint(distance);
+		
+		System.out.println("Error: " + pid.getError());
+		System.out.println("P: " + pid.getP());
+		System.out.println("Output: " + pid.get() + "\n");
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

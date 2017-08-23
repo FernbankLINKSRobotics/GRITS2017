@@ -75,6 +75,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
+		drive.reset();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}

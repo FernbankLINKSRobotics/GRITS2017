@@ -20,8 +20,8 @@ public class DriveTrain extends Subsystem {
 	private VictorSP rightMid = new VictorSP(4);
 	private VictorSP rightBot = new VictorSP(5);
 		
-	public Encoder leftEncoder  = new Encoder(0, 1, true,  Encoder.EncodingType.k4X);
-	public Encoder rightEncoder = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
+	public Encoder leftEncoder  = new Encoder(0, 1, false,  Encoder.EncodingType.k4X);
+	public Encoder rightEncoder = new Encoder(2, 3, true,   Encoder.EncodingType.k4X);
 
 	private PWMSpeedController[] leftMotors  = {leftTop,  leftMid,  leftBot};
 	private PWMSpeedController[] rightMotors = {rightTop, rightMid, rightBot};
@@ -72,7 +72,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void reset() {
-		//gyro.reset();
+		gyro.reset();
 		leftEncoder.reset();
 		rightEncoder.reset();
 	}

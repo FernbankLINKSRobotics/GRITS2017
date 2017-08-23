@@ -33,5 +33,7 @@ public class OI {
 		r4.whenPressed(new Climbing(-1   ));
 		r5.whenPressed(new Climbing(-0.25));
 		rt.whenPressed(new SlotToggle());
+		
+		
 	}
 }

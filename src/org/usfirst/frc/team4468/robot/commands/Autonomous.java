@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Autonomous extends CommandGroup {
 	public Autonomous() {
 		System.out.println("In Auto");
-		addSequential(new DriveForward(2));
+		addSequential(new TurnAngle(180));
+		System.out.println("Finished");
 	}
 }

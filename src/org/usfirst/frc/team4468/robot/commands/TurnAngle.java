@@ -19,7 +19,7 @@ public class TurnAngle extends Command {
 		requires(Robot.drive);
 		
 		angle = ang;
-		
+				
 		pidOut = new PIDOutput() {
 			@Override
 			public void pidWrite(double d) {
@@ -27,14 +27,15 @@ public class TurnAngle extends Command {
 			}
 		};
 		
-		pid = new PIDController(0.5, 0, 0, Robot.drive.gyro, pidOut);
+		pid = new PIDController(0.05, 0, 0.1, Robot.drive.gyro, pidOut);
 		pid.setContinuous();
-		pid.setTolerance(2);
+		pid.setTolerance(3);
 	}
 
 	protected void initialize() {
 		pid.reset();
         pid.enable();
+		Robot.drive.gyro.reset();
 	}
 	
 	@Override

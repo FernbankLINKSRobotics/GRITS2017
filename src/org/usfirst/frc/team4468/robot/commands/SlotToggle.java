@@ -20,7 +20,7 @@ public class SlotToggle extends Command {
 		if(!Robot.slot.isUp()) {
 			Robot.slot.up();
 		} else {
-			Robot.slot.down();
+			Robot.slot.up();
 		}
 	}
 

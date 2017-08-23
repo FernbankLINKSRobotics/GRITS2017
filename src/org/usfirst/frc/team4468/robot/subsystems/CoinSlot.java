@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class CoinSlot extends Subsystem {
 	private DoubleSolenoid slot = new DoubleSolenoid(4, 5);
-	private boolean state = true; 
+	private boolean state = false; 
 	
 	public CoinSlot() {
 		super();
