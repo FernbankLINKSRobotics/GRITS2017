@@ -8,12 +8,18 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Shifter extends Subsystem {
 	private DoubleSolenoid shift = new DoubleSolenoid(6, 7);
-	private boolean state = false; 
+	private boolean state; 
 	
 	public Shifter() {
 		super();
 		
 		LiveWindow.addActuator("Shifter", "Double Solenoid", (DoubleSolenoid) shift);
+		
+		if (shift.get() == Value.kForward) {
+			state = true;
+		} else {
+			state = false;
+		}
 	}
 	
 	@Override
@@ -25,10 +31,12 @@ public class Shifter extends Subsystem {
 	
 	public void up() {
 		shift.set(Value.kForward);
+		state = !state;
 	}
 	
 	public void down() {
-		shift.set(Value.kReverse); 
+		shift.set(Value.kReverse);
+		state = !state;
 	}
 	
 	public boolean isHighGear() {
