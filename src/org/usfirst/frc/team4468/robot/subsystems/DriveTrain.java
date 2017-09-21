@@ -4,8 +4,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
-import org.usfirst.frc.team4468.robot.commands.JoystickDrive;
+import org.usfirst.frc.team4468.robot.commands.Drive.JoystickDrive;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -25,6 +27,9 @@ public class DriveTrain extends Subsystem {
 
 	private PWMSpeedController[] leftMotors  = {leftTop,  leftMid,  leftBot};
 	private PWMSpeedController[] rightMotors = {rightTop, rightMid, rightBot};
+	
+	Stream<PWMSpeedController> leftStream  = Arrays.stream(leftMotors );
+	Stream<PWMSpeedController> rightStream = Arrays.stream(rightMotors);
 	
 	public double distanceTraveled;
 	public double angleTravled;
@@ -51,12 +56,8 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void drive(double left, double right) {
-		for (PWMSpeedController lMotor : leftMotors) {
-			lMotor.set(-left);
-		}
-		for (PWMSpeedController rMotor : rightMotors) {
-			rMotor.set(right);
-		}
+		leftStream .forEach((PWMSpeedController m) -> m.set(left ));
+		rightStream.forEach((PWMSpeedController m) -> m.set(right));
 	}
 	
 	public void stop() {

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4468.robot.commands;
+package org.usfirst.frc.team4468.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,7 +14,6 @@ public class TurnAngle extends Command {
 	private PIDController pid;
 	private PIDOutput pidOut;
 	
-	@SuppressWarnings("deprecation")
 	public TurnAngle(double ang) {
 		requires(Robot.drive);
 		
@@ -29,7 +28,7 @@ public class TurnAngle extends Command {
 		
 		pid = new PIDController(0.05, 0, 0.1, Robot.drive.gyro, pidOut);
 		pid.setContinuous();
-		pid.setTolerance(3);
+		pid.setPercentTolerance(2);
 	}
 
 	protected void initialize() {

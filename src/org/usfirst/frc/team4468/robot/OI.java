@@ -1,9 +1,13 @@
 package org.usfirst.frc.team4468.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.*;
-import org.usfirst.frc.team4468.robot.commands.*;
+
+import org.usfirst.frc.team4468.robot.commands.Attachments.Climbing;
+import org.usfirst.frc.team4468.robot.commands.Attachments.ShiftUp;
+import org.usfirst.frc.team4468.robot.commands.Attachments.SlotToggle;
+import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
 
 /**
  * This class is the glue that binds the controls on the physical operator

@@ -8,24 +8,24 @@ import java.util.stream.Stream;
 
 import edu.wpi.first.wpilibj.*;
 
-public class Climber extends Subsystem {
+public class Shooter extends Subsystem {
 	
-	private VictorSP climb1 = new VictorSP(6);
-	private VictorSP climb2 = new VictorSP(7);
+	private VictorSP shoot1 = new VictorSP(8);
+	private VictorSP shoot2 = new VictorSP(9);
 	
-	private PWMSpeedController[] motors = {climb1, climb2};
+	private PWMSpeedController[] motors = {shoot1, shoot2};
 	
 	Stream<PWMSpeedController> motorStream  = Arrays.stream(motors);
 
-	public Climber() {
+	public Shooter() {
 		super();
 		
-		LiveWindow.addActuator("Climber", "Motor 1", (VictorSP) climb1);
-		LiveWindow.addActuator("Climber", "Motor 2", (VictorSP) climb2);
+		LiveWindow.addActuator("Shooter", "Motor 1", (VictorSP) shoot1);
+		LiveWindow.addActuator("Shooter", "Motor 2", (VictorSP) shoot2);
 	}
 	
 	@Override
-	public void initDefaultCommand() {}
+	public void initDefaultCommand() {} 
 	
 	public void log() {}
 	

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4468.robot.commands;
+package org.usfirst.frc.team4468.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -9,17 +9,14 @@ import org.usfirst.frc.team4468.robot.Robot;
 
 public class DriveForward extends Command {	
 	private final double mult = 0.6;
-	private double distanceDriven;
 	private double distance;
 	
 	public PIDController pid;
 	private PIDOutput pidOut;
 	
-	@SuppressWarnings("deprecation")
 	public DriveForward(double dir) {
 		requires(Robot.drive);
 		
-		distanceDriven = Robot.drive.getDistance();
 		distance = dir;
 		
 		pidOut = new PIDOutput() {
@@ -30,7 +27,7 @@ public class DriveForward extends Command {
 		};
 		
 		pid = new PIDController(0.005, 0, 0.01, Robot.drive.leftEncoder, pidOut);
-		pid.setTolerance(0.5);
+		pid.setPercentTolerance(2);
 		pid.setContinuous();
 	}
 	
@@ -52,10 +49,8 @@ public class DriveForward extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-	
-		boolean isThere = distance - (distanceDriven - Robot.drive.getDistance()) == 0;
-		SmartDashboard.putString("Distance Reached Yet: ", Boolean.toString(isThere));
-		return isThere;
+		SmartDashboard.putString("Distance Reached Yet: ", Boolean.toString(pid.onTarget()));
+		return pid.onTarget();
 	}
 
 	// Called once after isFinished returns true

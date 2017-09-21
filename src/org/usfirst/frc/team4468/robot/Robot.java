@@ -4,11 +4,9 @@ package org.usfirst.frc.team4468.robot;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4468.robot.commands.Autonomous;
+import org.usfirst.frc.team4468.robot.commands.Routines.Autonomous;
 import org.usfirst.frc.team4468.robot.subsystems.*;
 
 /**
@@ -21,6 +19,7 @@ import org.usfirst.frc.team4468.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static DriveTrain drive;
+	public static Shooter shoot;
 	public static CoinSlot slot;
 	public static Climber climb;
 	public static Shifter shift;
@@ -36,6 +35,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		drive = new DriveTrain();
 		slot  = new CoinSlot();
+		shoot = new Shooter();
 		climb = new Climber();
 		shift = new Shifter();
 		oi    = new OI();
@@ -113,8 +113,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
-		climb.climb2.set(-1);
+		//Placeholder
 	}
 	
 	private void log() {
