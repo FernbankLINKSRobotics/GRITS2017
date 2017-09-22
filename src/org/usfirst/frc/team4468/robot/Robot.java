@@ -19,6 +19,7 @@ import org.usfirst.frc.team4468.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static DriveTrain drive;
+	public static Agitator agitate;
 	public static Shooter shoot;
 	public static CoinSlot slot;
 	public static Climber climb;
@@ -33,19 +34,22 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		drive = new DriveTrain();
-		slot  = new CoinSlot();
-		shoot = new Shooter();
-		climb = new Climber();
-		shift = new Shifter();
-		oi    = new OI();
+		drive   = new DriveTrain();
+		agitate = new Agitator();
+		slot    = new CoinSlot();
+		shoot   = new Shooter();
+		climb   = new Climber();
+		shift   = new Shifter();
+		oi      = new OI();
 		
 		autonomousCommand = new Autonomous();
 
+		SmartDashboard.putData(agitate);
 		SmartDashboard.putData(drive);
 		SmartDashboard.putData(slot );
 		SmartDashboard.putData(climb);
 		SmartDashboard.putData(shift);
+		SmartDashboard.putData(shoot);
 	}
 
 	/**
@@ -117,9 +121,11 @@ public class Robot extends IterativeRobot {
 	}
 	
 	private void log() {
-		drive.log();
-		slot .log();
-		climb.log();
-		shift.log();
+		agitate.log();
+		drive  .log();
+		slot   .log();
+		climb  .log();
+		shift  .log();
+		shoot  .log();
 	}
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc.team4468.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -25,7 +26,10 @@ public class Climber extends Subsystem {
 	}
 	
 	@Override
-	public void initDefaultCommand() {}
+	public void initDefaultCommand() {
+		SmartDashboard.putNumber("Speed 1:", climb1.getSpeed());
+		SmartDashboard.putNumber("Speed 2:", climb2.getSpeed());
+	}
 	
 	public void log() {}
 	

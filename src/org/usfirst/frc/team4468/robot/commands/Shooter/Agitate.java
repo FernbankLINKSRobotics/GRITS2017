@@ -4,19 +4,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4468.robot.Robot;
 
 
-public class Shoot extends Command {
+public class Agitate extends Command {
 
 	private double speed;
 	
-	public Shoot (double input) {
-		requires(Robot.shoot);
+	public Agitate (double input) {
+		requires(Robot.agitate);
 		speed = input;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.shoot.set(speed);
+		Robot.agitate.set(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -28,6 +28,6 @@ public class Shoot extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.shoot.stop();
+		Robot.agitate.stop();
 	}
 }
