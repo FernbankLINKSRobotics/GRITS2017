@@ -1,33 +1,33 @@
-package org.usfirst.frc.team4468.robot.commands.Attachments;
+package org.usfirst.frc.team4468.robot.commands.Misc;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4468.robot.Robot;
 
-public class SlotToggle extends Command {
+public class ShiftUp extends Command {
+
+	public boolean prevState;
 	
-	private boolean prevState;
-	
-	public SlotToggle() {
-		requires(Robot.slot);
+	public ShiftUp() {
+		requires(Robot.shift);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		prevState = Robot.slot.isUp();
-				
-		if(!Robot.slot.isUp()) {
-			Robot.slot.up();
+		prevState = Robot.shift.isHighGear();
+		
+		if(!Robot.shift.isHighGear()) {
+			Robot.shift.up();
 		} else {
-			Robot.slot.up();
+			Robot.shift.down();
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return !(prevState == Robot.slot.isUp()); // Runs until interrupted
+		return !(prevState == Robot.shift.isHighGear()); // Runs until interrupted
 	}
 
 	// Called once after isFinished returns true

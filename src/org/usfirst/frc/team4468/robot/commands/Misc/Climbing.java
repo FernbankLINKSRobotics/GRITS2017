@@ -1,8 +1,8 @@
-package org.usfirst.frc.team4468.robot.commands.Attachments;
-
-import edu.wpi.first.wpilibj.command.Command;
+package org.usfirst.frc.team4468.robot.commands.Misc;
 
 import org.usfirst.frc.team4468.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 
 public class Climbing extends Command {

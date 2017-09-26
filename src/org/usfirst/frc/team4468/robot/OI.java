@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4468.robot.commands.Attachments.Climbing;
-import org.usfirst.frc.team4468.robot.commands.Attachments.ShiftUp;
-import org.usfirst.frc.team4468.robot.commands.Attachments.SlotToggle;
+import org.usfirst.frc.team4468.robot.commands.Misc.Climbing;
+import org.usfirst.frc.team4468.robot.commands.Misc.ShiftUp;
+import org.usfirst.frc.team4468.robot.commands.Misc.SlotToggle;
 import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
 
 /**
