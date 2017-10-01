@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-//import org.zeromq.ZMQ;
+import org.zeromq.ZMQ;
 
 import edu.wpi.first.wpilibj.*;
 
