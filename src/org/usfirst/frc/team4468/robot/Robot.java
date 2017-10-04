@@ -19,7 +19,6 @@ import org.usfirst.frc.team4468.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	public static DriveTrain drive;
-	public static Agitator agitate;
 	public static Shooter shoot;
 	public static CoinSlot slot;
 	public static Climber climb;
@@ -35,7 +34,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		drive   = new DriveTrain();
-		agitate = new Agitator();
 		slot    = new CoinSlot();
 		shoot   = new Shooter();
 		climb   = new Climber();
@@ -44,7 +42,6 @@ public class Robot extends IterativeRobot {
 		
 		autonomousCommand = new Autonomous();
 
-		SmartDashboard.putData(agitate);
 		SmartDashboard.putData(drive);
 		SmartDashboard.putData(slot );
 		SmartDashboard.putData(climb);
@@ -117,11 +114,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		//Placeholder
+		shoot.setAgitate(0.7);
 	}
 	
 	private void log() {
-		agitate.log();
 		drive  .log();
 		slot   .log();
 		climb  .log();
