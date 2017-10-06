@@ -2,8 +2,6 @@ package org.usfirst.frc.team4468.robot.commands.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4468.robot.Robot;
-import org.usfirst.frc.team4468.robot.subsystems.Shooter;
-
 
 public class Shoot extends Command {
 
@@ -14,7 +12,7 @@ public class Shoot extends Command {
 	}
 
 	private double calcSpeed() {
-		double distance = Shooter.getDistance()+.3;
+		double distance = Robot.shoot.getDistance()+.3;
 		double numerator = -9.8*Math.pow(distance, 2);
 		double TanAngle = Math.tan((65*Math.PI)/180);
 		double CosAngle = Math.cos((65*Math.PI)/180);

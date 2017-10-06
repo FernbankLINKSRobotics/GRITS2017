@@ -49,7 +49,7 @@ public class DriveForward extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		SmartDashboard.putString("Distance Reached Yet: ", Boolean.toString(pid.onTarget()));
+		SmartDashboard.putBoolean("Distance Reached Yet: ", pid.onTarget());
 		return pid.onTarget();
 	}
 

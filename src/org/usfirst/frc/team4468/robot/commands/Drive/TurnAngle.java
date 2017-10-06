@@ -47,7 +47,7 @@ public class TurnAngle extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		SmartDashboard.putString("Angle Reached Yet: ", Boolean.toString(pid.onTarget()));
+		SmartDashboard.putBoolean("Angle Reached Yet: ", pid.onTarget());
 		return pid.onTarget();
 	}
 

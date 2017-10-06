@@ -1,13 +1,10 @@
 package org.usfirst.frc.team4468.robot.subsystems;
 
+import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import edu.wpi.first.wpilibj.*;
 
 public class Climber extends Subsystem {
 	
@@ -15,8 +12,6 @@ public class Climber extends Subsystem {
 	private VictorSP climb2 = new VictorSP(7);
 	
 	private PWMSpeedController[] motors = {climb1, climb2};
-	
-	Stream<PWMSpeedController> motorStream  = Arrays.stream(motors);
 
 	public Climber() {
 		super();
@@ -34,7 +29,9 @@ public class Climber extends Subsystem {
 	public void log() {}
 	
 	public void set(double speed) {
-		motorStream.forEach((PWMSpeedController m) -> m.set(speed));
+		for(PWMSpeedController m : motors) {
+			m.set(speed);
+		}
 	}
 	
 	public void stop() {

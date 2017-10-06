@@ -33,12 +33,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		drive   = new DriveTrain();
-		slot    = new CoinSlot();
-		shoot   = new Shooter();
-		climb   = new Climber();
-		shift   = new Shifter();
-		oi      = new OI();
+		drive = new DriveTrain();
+		slot  = new CoinSlot();
+		shoot = new Shooter();
+		climb = new Climber();
+		shift = new Shifter();
+		oi    = new OI();
 		
 		autonomousCommand = new Autonomous();
 
@@ -118,10 +118,10 @@ public class Robot extends IterativeRobot {
 	}
 	
 	private void log() {
-		drive  .log();
-		slot   .log();
-		climb  .log();
-		shift  .log();
-		shoot  .log();
+		drive.log();
+		slot .log();
+		climb.log();
+		shift.log();
+		shoot.log();
 	}
 }

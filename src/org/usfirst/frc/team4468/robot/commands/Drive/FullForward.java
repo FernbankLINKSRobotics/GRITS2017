@@ -35,6 +35,6 @@ public class FullForward extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.drive.drive(0, 0);
+		Robot.drive.stop();
 	}
 }

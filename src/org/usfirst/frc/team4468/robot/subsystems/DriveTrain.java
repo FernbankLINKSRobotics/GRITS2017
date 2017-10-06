@@ -1,11 +1,12 @@
 package org.usfirst.frc.team4468.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.*;
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 import org.usfirst.frc.team4468.robot.commands.Drive.JoystickDrive;
 
@@ -27,9 +28,6 @@ public class DriveTrain extends Subsystem {
 
 	private PWMSpeedController[] leftMotors  = {leftTop,  leftMid,  leftBot};
 	private PWMSpeedController[] rightMotors = {rightTop, rightMid, rightBot};
-	
-	Stream<PWMSpeedController> leftStream  = Arrays.stream(leftMotors );
-	Stream<PWMSpeedController> rightStream = Arrays.stream(rightMotors);
 	
 	public double distanceTraveled;
 	public double angleTravled;
@@ -56,12 +54,21 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void drive(double left, double right) {
-		leftStream .forEach((PWMSpeedController m) -> m.set(left ));
-		rightStream.forEach((PWMSpeedController m) -> m.set(right));
+		for(PWMSpeedController l : leftMotors) {
+			l.set(left);
+		}
+		for(PWMSpeedController r : rightMotors) {
+			r.set(left);
+		}
 	}
 	
 	public void stop() {
-		drive(0, 0);
+		for(PWMSpeedController l : leftMotors) {
+			l.stopMotor();
+		}
+		for(PWMSpeedController r : rightMotors) {
+			r.stopMotor();
+		}
 	}
 
 	public double getHeading() {
@@ -81,6 +88,10 @@ public class DriveTrain extends Subsystem {
 	public void encoderReset() {
 		leftEncoder.reset();
 		rightEncoder.reset();
+	}
+	
+	public void gyroReset() {
+		gyro.reset();
 	}
 	
 	public void log() {

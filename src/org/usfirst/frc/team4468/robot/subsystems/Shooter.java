@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4468.robot.subsystems;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -8,11 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 
-import edu.wpi.first.wpilibj.*;
-
 public class Shooter extends Subsystem {
 	
-	private static NetworkTable table;
+	private NetworkTable table;
 
 	public CANTalon shoot1 = new CANTalon(10);
 	public CANTalon shoot2 = new CANTalon(11);
@@ -20,7 +19,7 @@ public class Shooter extends Subsystem {
 	public VictorSP agitateMotor = new VictorSP(9);
 	
 	public Shooter() {
-		super();
+		super(); 
 		
 		table = NetworkTable.getTable("Vision");
 
@@ -52,15 +51,15 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void stop() {
-		//setFly(0);
+		setFly(0);
 		setAgitate(0);
 	}
 	
-	public static double getAngle() {
+	public double getAngle() {
 		return table.getNumber("angle", 50);
 	}
 	
-	public static double getDistance(){
+	public double getDistance(){
 		return table.getNumber("distance", 50);
 	}
 }
