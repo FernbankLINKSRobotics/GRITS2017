@@ -15,10 +15,12 @@ import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
  */
 public class OI {
 	
-	public Joystick left  = new Joystick(0);
+	public Joystick ctrl  = new Joystick(0);
 	public Joystick right = new Joystick(1);
+	public Joystick left  = new Joystick(2);
 	
 	public OI() {
+		
 		SmartDashboard.putData("Toggle slot" , new SlotToggle());
 		SmartDashboard.putData("Toggle shift", new ShiftUp());
 		

@@ -14,7 +14,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class DriveTrain extends Subsystem {
 	
-	public AHRS gyro = new AHRS(SerialPort.Port.kUSB1);
+	public AHRS gyro = new AHRS(SerialPort.Port.kUSB2);
 	
 	private VictorSP leftTop  = new VictorSP(0);
 	private VictorSP leftMid  = new VictorSP(1);
@@ -55,10 +55,10 @@ public class DriveTrain extends Subsystem {
 	
 	public void drive(double left, double right) {
 		for(PWMSpeedController l : leftMotors) {
-			l.set(left);
+			l.set(-left);
 		}
 		for(PWMSpeedController r : rightMotors) {
-			r.set(left);
+			r.set(right);
 		}
 	}
 	
