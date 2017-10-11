@@ -15,9 +15,9 @@ import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
  */
 public class OI {
 	
-	public Joystick ctrl  = new Joystick(0);
-	public Joystick right = new Joystick(1);
-	public Joystick left  = new Joystick(2);
+	public Joystick ctrl  = new Joystick(2);
+	public Joystick right = new Joystick(0);
+	public Joystick left  = new Joystick(1);
 	
 	public OI() {
 		

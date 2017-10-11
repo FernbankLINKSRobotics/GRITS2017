@@ -105,6 +105,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		
+		System.out.println(shoot.shoot1.getEncPosition());
 		Scheduler.getInstance().run();
 		log();
 	}
@@ -114,7 +116,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		shoot.setAgitate(0.7);
+		//shoot.setAgitate(0.7);
+		shoot.shoot1.set(-1);
+		System.out.println(shoot.shoot1.getEncVelocity());
 	}
 	
 	private void log() {

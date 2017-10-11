@@ -12,7 +12,7 @@ public class JoystickDrive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.drive(Robot.oi.left.getY(), Robot.oi.right.getY());
+		Robot.drive.drive(-Robot.oi.left.getY(), -Robot.oi.right.getY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
