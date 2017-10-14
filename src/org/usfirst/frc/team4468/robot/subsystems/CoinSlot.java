@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class CoinSlot extends Subsystem {
 	private static DoubleSolenoid slot = new DoubleSolenoid(4, 5);
+	private boolean state;
 	
 	public CoinSlot() {
 		super();
 		
 		LiveWindow.addActuator("Coin Slot", "Double Solenoid", (DoubleSolenoid) slot);
+		state = (slot.get() == Value.kForward);
 	}
 	
 	@Override
@@ -24,13 +26,15 @@ public class CoinSlot extends Subsystem {
 	
 	public void up() {
 		slot.set(Value.kForward);
+		state = true;
 	}
 	
 	public void down() {
 		slot.set(Value.kReverse); 
+		state = false;
 	}
 	
 	public boolean isUp() {
-		return (slot.get() == Value.kForward);
+		return state;
 	}
 }

@@ -8,29 +8,33 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Shifter extends Subsystem {
 	private DoubleSolenoid shift = new DoubleSolenoid(6, 7);
+	private boolean state;
 	
 	public Shifter() {
 		super();
 		
 		LiveWindow.addActuator("Shifter", "Double Solenoid", (DoubleSolenoid) shift);
+		state = (shift.get() == Value.kForward);
 	}
 	
 	@Override
 	public void initDefaultCommand() {}
 	
 	public void log() {
-		SmartDashboard.putBoolean("Gear high: ", shift.get() == Value.kForward);
+		SmartDashboard.putBoolean("Gear high: ",state);
 	}
 	
 	public void up() {
 		shift.set(Value.kForward);
+		state = true;
 	}
 	
 	public void down() {
 		shift.set(Value.kReverse);
+		state = false;
 	}
 	
 	public boolean isHighGear() {
-		return (shift.get() == Value.kForward);
+		return state;
 	}
 }

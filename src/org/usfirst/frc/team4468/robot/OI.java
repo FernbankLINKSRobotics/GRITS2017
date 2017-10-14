@@ -34,11 +34,11 @@ public class OI {
 		
 		l2.whenPressed(new FullForward(false));
 		l3.whenPressed(new FullForward(true ));
-		lt.whenPressed(new ShiftUp());
+		lt.whenReleased(new ShiftUp());
 		
 		r4.whenPressed(new Climbing(-1   ));
 		r5.whenPressed(new Climbing(-0.25));
-		rt.whenPressed(new SlotToggle());
+		rt.whenReleased(new SlotToggle());
 		
 		
 	}

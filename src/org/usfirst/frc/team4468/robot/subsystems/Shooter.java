@@ -28,9 +28,9 @@ public class Shooter extends Subsystem {
 		LiveWindow.addActuator("Agitator", "Motor",  (VictorSP) agitateMotor);
 		
 		shoot1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shoot1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shoot1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		
-		shoot2.changeControlMode(CANTalon.TalonControlMode.Follower);
+		shoot2.changeControlMode(CANTalon.TalonControlMode.Speed);
 		shoot2.set(shoot1.getDeviceID());
 		
 	}
