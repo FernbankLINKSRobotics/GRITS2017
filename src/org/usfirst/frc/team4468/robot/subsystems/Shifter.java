@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Shifter extends Subsystem {
-	private DoubleSolenoid shift = new DoubleSolenoid(6, 7);
+	private DoubleSolenoid shift = new DoubleSolenoid(2, 3);
 	private boolean state;
 	
 	public Shifter() {

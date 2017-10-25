@@ -76,7 +76,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		drive.reset();
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -105,8 +104,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+
+		if(oi.left.getRawButton(4)) {
+			shoot.setAgitate(0.7);
+			shoot.setFly(-1);
+		} else {
+			shoot.stop();
+		} 
 		
-		//System.out.println(shoot.shoot1.getEncPosition());
+		
+		System.out.println("Angle: " + drive.gyro.getAngle());
+		System.out.println("Yaw: " + drive.gyro.getYaw());
 		Scheduler.getInstance().run();
 		log();
 	}
@@ -116,9 +124,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		//shoot.setAgitate(0.7);
-		//shoot.shoot1.set(-1);
-		//System.out.println(shoot.shoot1.getEncVelocity());
+		shoot.setFly(-0.65);
+		shoot.setAgitate(0.5);
+		System.out.println("Right Encoder: " + drive.rightEncoder.getDistance());
+		System.out.println("Left Encoder: " + drive.leftEncoder.getDistance());
 	}
 	
 	private void log() {

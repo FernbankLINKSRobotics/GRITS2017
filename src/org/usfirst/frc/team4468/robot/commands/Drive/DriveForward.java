@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4468.robot.Robot;
 
 public class DriveForward extends Command {	
-	private final double mult = 0.6;
 	private double distance;
 	
 	public PIDController pid;
@@ -22,7 +21,7 @@ public class DriveForward extends Command {
 		pidOut = new PIDOutput() {
 			@Override
 			public void pidWrite(double d) {
-				Robot.drive.drive(d * mult, d * mult);
+				Robot.drive.drive(d * Robot.drive.multL, d * Robot.drive.multR);
 			}
 		};
 		
@@ -32,8 +31,8 @@ public class DriveForward extends Command {
 	}
 	
 	protected void initialize() {
-		//pid.reset();
         pid.enable();
+        drive.reset();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run

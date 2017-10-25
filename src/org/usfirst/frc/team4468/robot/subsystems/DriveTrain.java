@@ -23,11 +23,14 @@ public class DriveTrain extends Subsystem {
 	private VictorSP rightMid = new VictorSP(4);
 	private VictorSP rightBot = new VictorSP(5);
 		
-	public Encoder leftEncoder  = new Encoder(0, 1, false,  Encoder.EncodingType.k4X);
-	public Encoder rightEncoder = new Encoder(2, 3, true,   Encoder.EncodingType.k4X);
+	public Encoder rightEncoder = new Encoder(0, 1, true,   Encoder.EncodingType.k4X);
+	public Encoder leftEncoder  = new Encoder(2, 3, false,  Encoder.EncodingType.k4X);
 
 	private PWMSpeedController[] leftMotors  = {leftTop,  leftMid,  leftBot};
 	private PWMSpeedController[] rightMotors = {rightTop, rightMid, rightBot};
+	
+	public final double multL = 0.6;
+	public final double multR = 0.5;
 	
 	public double distanceTraveled;
 	public double angleTravled;
@@ -54,11 +57,23 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void drive(double left, double right) {
-		for(PWMSpeedController l : leftMotors) {
-			l.set(left);
+		double r = 0;
+		double l = 0;
+		
+		// Normalize Speed
+		if((right * 1.2) > 1) {
+			r = 1;
+			l = (left / (right * 1.2));
+		} else {
+			r = right * 1.2;
+			l = left;
 		}
-		for(PWMSpeedController r : rightMotors) {
-			r.set(-right);
+		
+		for(PWMSpeedController lMotor : leftMotors) {
+			lMotor.set(l);
+		}
+		for(PWMSpeedController rMotor : rightMotors) {
+			rMotor.set(-r);
 		}
 	}
 	

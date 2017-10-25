@@ -28,11 +28,10 @@ public class Shooter extends Subsystem {
 		LiveWindow.addActuator("Agitator", "Motor",  (VictorSP) agitateMotor);
 		
 		shoot1.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shoot1.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shoot1.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		
-		shoot2.changeControlMode(CANTalon.TalonControlMode.Speed);
-		shoot2.set(shoot1.getDeviceID());
-		
+		shoot2.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		//shoot2.set(shoot1.getDeviceID())	
 	}
 	
 	@Override
@@ -46,6 +45,7 @@ public class Shooter extends Subsystem {
 
 	public void setFly(double speed) {
 		shoot1.set(speed);
+		shoot2.set(speed);
 	}
 
 	public void setAgitate(double speed) {

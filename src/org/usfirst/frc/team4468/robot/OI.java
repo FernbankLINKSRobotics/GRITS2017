@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4468.robot.commands.Misc.Climbing;
 import org.usfirst.frc.team4468.robot.commands.Misc.ShiftUp;
 import org.usfirst.frc.team4468.robot.commands.Misc.SlotToggle;
+import org.usfirst.frc.team4468.robot.commands.Shooter.ManualShoot;
 import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
 
 /**
@@ -16,8 +17,8 @@ import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
 public class OI {
 	
 	public Joystick ctrl  = new Joystick(2);
-	public Joystick right = new Joystick(0);
-	public Joystick left  = new Joystick(1);
+	public Joystick left  = new Joystick(0);
+	public Joystick right = new Joystick(1);
 	
 	public OI() {
 		
@@ -26,6 +27,8 @@ public class OI {
 		
 		JoystickButton l2 = new JoystickButton(left, 2);
 		JoystickButton l3 = new JoystickButton(left, 3);
+		JoystickButton l4 = new JoystickButton(left, 4);
+		JoystickButton l5 = new JoystickButton(left, 5);
 		JoystickButton lt = new JoystickButton(left, 1);
 		
 		JoystickButton r4 = new JoystickButton(right, 4);
@@ -34,6 +37,8 @@ public class OI {
 		
 		l2.whenPressed(new FullForward(false));
 		l3.whenPressed(new FullForward(true ));
+		//l4.whenPressed(new ManualShoot(true ));
+		//l5.whenPressed(new ManualShoot(false));
 		lt.whenReleased(new ShiftUp());
 		
 		r4.whenPressed(new Climbing(-1   ));

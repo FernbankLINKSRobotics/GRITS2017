@@ -16,25 +16,23 @@ public class TurnAngle extends Command {
 	
 	public TurnAngle(double ang) {
 		requires(Robot.drive);
-		
-		angle = ang;
 				
+		angle = ang;
+		
 		pidOut = new PIDOutput() {
 			@Override
 			public void pidWrite(double d) {
-				Robot.drive.drive(-d * 0.6, d * 0.6);
+				Robot.drive.drive(-d * Robot.drive.multL, 0);
 			}
 		};
-		
 		pid = new PIDController(0.05, 0, 0.1, Robot.drive.gyro, pidOut);
 		pid.setContinuous();
 		pid.setPercentTolerance(2);
 	}
 
 	protected void initialize() {
-		pid.reset();
-        pid.enable();
-		Robot.drive.gyro.reset();
+		pid.enable();
+        Robot.drive.reset();
 	}
 	
 	@Override
@@ -42,6 +40,7 @@ public class TurnAngle extends Command {
 		pid.setSetpoint(angle);
         System.out.println("Angle Error: " + pid.getError() + "\n");
         System.out.println("Result: " + pid.get() + "\n");
+        System.out.println("Angle reaches" + pid.onTarget() + "\n");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
