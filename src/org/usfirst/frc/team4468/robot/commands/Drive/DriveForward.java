@@ -27,12 +27,13 @@ public class DriveForward extends Command {
 		
 		pid = new PIDController(0.005, 0, 0.01, Robot.drive.leftEncoder, pidOut);
 		pid.setPercentTolerance(2);
+		pid.setOutputRange(-1, 1);
 		pid.setContinuous();
 	}
 	
 	protected void initialize() {
         pid.enable();
-        drive.reset();
+        Robot.drive.reset();
 	}
 	
 	// Called repeatedly when this Command is scheduled to run

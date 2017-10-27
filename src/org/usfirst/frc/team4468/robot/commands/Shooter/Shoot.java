@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4468.robot.commands.Shooter;
 
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4468.robot.Robot;
 
@@ -13,7 +14,9 @@ public class Shoot extends Command {
 	
 	public Shoot () {
 		requires(Robot.shoot);
-		//Robot.shoot.shoot1.setPID(1, 0, 0);
+		
+		Robot.shoot.shoot1.setPIDSourceType(PIDSourceType.kRate);
+		Robot.shoot.shoot1.setPID(1, 0, 0);
 	}
 	
 	public static double RotationalVelocity() {
@@ -74,9 +77,10 @@ public class Shoot extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//Robot.shoot.shoot1.setSetpoint(calcSpeed());
+		Robot.shoot.shoot1.setSetpoint(RotationalVelocity());
+		System.out.println("Shooter Error: " + Robot.shoot.shoot1.getError());
 		//if(Robot.shoot.shoot1.getError() < 3) { //placeholder variable
-			Robot.shoot.setAgitate(.5);
+		//	Robot.shoot.setAgitate(.5);
 		//}
 	}
 
