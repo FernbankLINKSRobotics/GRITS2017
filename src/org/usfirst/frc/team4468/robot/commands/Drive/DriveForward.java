@@ -21,12 +21,12 @@ public class DriveForward extends Command {
 		pidOut = new PIDOutput() {
 			@Override
 			public void pidWrite(double d) {
-				Robot.drive.drive(d * Robot.drive.multL, d * Robot.drive.multR);
+				Robot.drive.drive(d, d/1.68);
 			}
 		};
 		
 		pid = new PIDController(0.005, 0, 0.01, Robot.drive.leftEncoder, pidOut);
-		pid.setPercentTolerance(2);
+		pid.setPercentTolerance(5);
 		pid.setOutputRange(-1, 1);
 		pid.setContinuous();
 	}
@@ -43,14 +43,16 @@ public class DriveForward extends Command {
 		
 		System.out.println("Error: " + pid.getError());
 		System.out.println("P: " + pid.getP());
-		System.out.println("Output: " + pid.get() + "\n");
+		System.out.println("Output: " + pid.get());
+		System.out.println("Target: " + pid.onTarget());
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		SmartDashboard.putBoolean("Distance Reached Yet: ", pid.onTarget());
-		return pid.onTarget();
+		boolean isDone = (pid.getError() < 10);
+		SmartDashboard.putBoolean("Distance Reached Yet: ", isDone);
+		return isDone;
 	}
 
 	// Called once after isFinished returns true

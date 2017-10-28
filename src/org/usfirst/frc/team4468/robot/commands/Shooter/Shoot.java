@@ -1,24 +1,25 @@
 package org.usfirst.frc.team4468.robot.commands.Shooter;
 
-import edu.wpi.first.wpilibj.PIDSourceType;
+//import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4468.robot.Robot;
 
 public class Shoot extends Command {
-	
+	/*
 	static double aD = 1.2; //in C, will change later
 	static double angle = Math.toRadians(61); //Can Change
 	static double m = .0706;
 	static double g = 9.8;
 	static double distanceX = 5;
+	*/
 	
 	public Shoot () {
 		requires(Robot.shoot);
 		
-		Robot.shoot.shoot1.setPIDSourceType(PIDSourceType.kRate);
-		Robot.shoot.shoot1.setPID(1, 0, 0);
+		//Robot.shoot.shoot1.setPIDSourceType(PIDSourceType.kRate);
+		//Robot.shoot.shoot1.setPID(1, 0, 0);
 	}
-	
+	 /*
 	public static double RotationalVelocity() {
 		return (FinalVelocity()*.1519)/.0347; //in RPS
 	}
@@ -73,22 +74,19 @@ public class Shoot extends Command {
 		double comp5 = (((400*k*Math.pow(storeArray, 2))/g)+((1681*Math.pow(k, 2))/m)+(1230*k)+(600*m));
 		return ((storeArray/g)+((1/(200*k))*(((-100*k*storeArray)/g)+Math.sqrt(comp1+comp2*(comp3+comp4+comp5)))));
 	}
+	*/
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.shoot.shoot1.setSetpoint(RotationalVelocity());
-		System.out.println("Shooter Error: " + Robot.shoot.shoot1.getError());
-		//if(Robot.shoot.shoot1.getError() < 3) { //placeholder variable
-		//	Robot.shoot.setAgitate(.5);
-		//}
+		Robot.shoot.setAgitate(0.7);
+		Robot.shoot.setFly(-0.88);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false; // Runs until interrupted
-		//placeholder
+		return !(Robot.oi.left.getRawButton(4));
 	}
 
 	// Called once after isFinished returns true

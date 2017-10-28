@@ -10,54 +10,60 @@ import edu.wpi.first.wpilibj.PIDOutput;
 
 public class TurnAngle extends Command {
 	private double angle;
+	private double error;
 	
-	private PIDController pid;
-	private PIDOutput pidOut;
+	private double tolerance = 2;
+	private double speed = 0.3;
+	
+	private double yomama = Robot.drive.gyro.getYaw();
+	private double goal;
+	
+	
 	
 	public TurnAngle(double ang) {
 		requires(Robot.drive);
 				
 		angle = ang;
-		
-		pidOut = new PIDOutput() {
-			@Override
-			public void pidWrite(double d) {
-				Robot.drive.drive(-d * Robot.drive.multL, 0);
-			}
-		};
-		pid = new PIDController(0.05, 0, 0.1, Robot.drive.gyro, pidOut);
-		pid.setContinuous();
-		pid.setPercentTolerance(2);
+		goal = yomama + angle;
+				
+		/*Robot.drive.gyro.reset();
+		Robot.drive.gyro.zeroYaw();
+		Robot.drive.gyro.resetDisplacement();*/
 	}
 
 	protected void initialize() {
-		pid.enable();
-        Robot.drive.reset();
 	}
 	
 	@Override
 	protected void execute() {
-		pid.setSetpoint(angle);
-        System.out.println("Angle Error: " + pid.getError() + "\n");
-        System.out.println("Result: " + pid.get() + "\n");
-        System.out.println("Angle reaches" + pid.onTarget() + "\n");
+		/*if (angle < 0) {
+			tolerance = -tolerance;
+		}*/
+		System.out.println("In Turn");
+		error = (goal - Robot.drive.gyro.getYaw() % 360);
+		if(error < -tolerance) {
+			Robot.drive.drive(-speed, speed);
+		} else if(error > tolerance) {
+			Robot.drive.drive(speed, -speed);
+		} else {
+			Robot.drive.stop();
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		SmartDashboard.putBoolean("Angle Reached Yet: ", pid.onTarget());
-		return pid.onTarget();
+		return ((error > -tolerance) && (error < tolerance));
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		pid.disable();
 		Robot.drive.stop();
+		Robot.drive.reset();
 	}
 	
 	protected void iterrupted() {
-		pid.disable();
+		Robot.drive.stop();
 	}
 }

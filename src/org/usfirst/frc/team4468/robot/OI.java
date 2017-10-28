@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4468.robot.commands.Misc.Climbing;
 import org.usfirst.frc.team4468.robot.commands.Misc.ShiftUp;
 import org.usfirst.frc.team4468.robot.commands.Misc.SlotToggle;
-import org.usfirst.frc.team4468.robot.commands.Shooter.ManualShoot;
+import org.usfirst.frc.team4468.robot.commands.Shooter.Shoot;
 import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
 
 /**
@@ -25,20 +25,21 @@ public class OI {
 		SmartDashboard.putData("Toggle slot" , new SlotToggle());
 		SmartDashboard.putData("Toggle shift", new ShiftUp());
 		
+		JoystickButton c3 = new JoystickButton(ctrl, 3);
+		
 		JoystickButton l2 = new JoystickButton(left, 2);
 		JoystickButton l3 = new JoystickButton(left, 3);
-		JoystickButton l4 = new JoystickButton(left, 4);
-		JoystickButton l5 = new JoystickButton(left, 5);
+		//JoystickButton l4 = new JoystickButton(left, 4);
 		JoystickButton lt = new JoystickButton(left, 1);
 		
 		JoystickButton r4 = new JoystickButton(right, 4);
 		JoystickButton r5 = new JoystickButton(right, 5);
 		JoystickButton rt = new JoystickButton(right, 1);
 		
+		c3.whenPressed(new Shoot());
+		
 		l2.whenPressed(new FullForward(false));
 		l3.whenPressed(new FullForward(true ));
-		//l4.whenPressed(new ManualShoot(true ));
-		//l5.whenPressed(new ManualShoot(false));
 		lt.whenReleased(new ShiftUp());
 		
 		r4.whenPressed(new Climbing(-1   ));

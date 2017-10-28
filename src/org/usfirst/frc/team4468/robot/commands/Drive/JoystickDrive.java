@@ -13,6 +13,10 @@ public class JoystickDrive extends Command {
 	@Override
 	protected void execute() {
 		Robot.drive.drive(-Robot.oi.right.getY(), -Robot.oi.left.getY());
+		
+		System.out.println("Heading: " + Robot.drive.gyro.getCompassHeading());
+		System.out.println("Angle: " + Robot.drive.gyro.getAngle());
+		System.out.println("Yaw: " + Robot.drive.gyro.getYaw());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

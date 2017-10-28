@@ -23,7 +23,11 @@ public class Climbing extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false; // Runs until interrupted
+		if(-speed < .5) {
+			return !(Robot.oi.right.getRawButton(5));
+		} else {
+			return !(Robot.oi.right.getRawButton(4));
+		}
 	}
 
 	// Called once after isFinished returns true
