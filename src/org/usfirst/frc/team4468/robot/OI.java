@@ -15,37 +15,37 @@ import org.usfirst.frc.team4468.robot.commands.Drive.FullForward;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
-	public Joystick ctrl  = new Joystick(2);
-	public Joystick left  = new Joystick(0);
-	public Joystick right = new Joystick(1);
-	
-	public OI() {
-		
-		SmartDashboard.putData("Toggle slot" , new SlotToggle());
-		SmartDashboard.putData("Toggle shift", new ShiftUp());
-		
-		JoystickButton c3 = new JoystickButton(ctrl, 3);
-		
-		JoystickButton l2 = new JoystickButton(left, 2);
-		JoystickButton l3 = new JoystickButton(left, 3);
-		//JoystickButton l4 = new JoystickButton(left, 4);
-		JoystickButton lt = new JoystickButton(left, 1);
-		
-		JoystickButton r4 = new JoystickButton(right, 4);
-		JoystickButton r5 = new JoystickButton(right, 5);
-		JoystickButton rt = new JoystickButton(right, 1);
-		
-		c3.whenPressed(new Shoot());
-		
-		l2.whenPressed(new FullForward(false));
-		l3.whenPressed(new FullForward(true ));
-		lt.whenReleased(new ShiftUp());
-		
-		r4.whenPressed(new Climbing(-1   ));
-		r5.whenPressed(new Climbing(-0.25));
-		rt.whenReleased(new SlotToggle());
-		
-		
-	}
+  
+  public Joystick ctrl  = new Joystick(2);
+  public Joystick left  = new Joystick(0);
+  public Joystick right = new Joystick(1);
+  
+  public OI() {
+    
+    SmartDashboard.putData("Toggle slot" , new SlotToggle());
+    SmartDashboard.putData("Toggle shift", new ShiftUp());
+    
+    JoystickButton c3 = new JoystickButton(ctrl, 3);
+    
+    JoystickButton l2 = new JoystickButton(left, 2);
+    JoystickButton l3 = new JoystickButton(left, 3);
+    //JoystickButton l4 = new JoystickButton(left, 4);
+    JoystickButton lt = new JoystickButton(left, 1);
+    
+    JoystickButton r4 = new JoystickButton(right, 4);
+    JoystickButton r5 = new JoystickButton(right, 5);
+    JoystickButton rt = new JoystickButton(right, 1);
+    
+    c3.whenPressed(new Shoot());
+    
+    l2.whenPressed(new FullForward(false));
+    l3.whenPressed(new FullForward(true ));
+    lt.whenReleased(new ShiftUp());
+    
+    r4.whenPressed(new Climbing(-1   ));
+    r5.whenPressed(new Climbing(-0.25));
+    rt.whenReleased(new SlotToggle());
+    
+    
+  }
 }

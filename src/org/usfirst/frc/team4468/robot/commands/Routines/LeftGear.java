@@ -6,9 +6,9 @@ import org.usfirst.frc.team4468.robot.commands.Drive.TurnAngle;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LeftGear extends CommandGroup{
-	public LeftGear() {
-		addSequential(new DriveForward(0));
-		addSequential(new TurnAngle(0));
-		addSequential(new DriveForward(0));
-	}
+  public LeftGear() {
+    addSequential(new DriveForward(0));
+    addSequential(new TurnAngle(0));
+    addSequential(new DriveForward(0));
+  }
 }

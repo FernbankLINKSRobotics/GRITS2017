@@ -18,117 +18,114 @@ import org.usfirst.frc.team4468.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveTrain drive;
-	public static Shooter shoot;
-	public static CoinSlot slot;
-	public static Climber climb;
-	public static Shifter shift;
-	public static OI oi;
+  public static DriveTrain drive;
+  public static Shooter shoot;
+  public static CoinSlot slot;
+  public static Climber climb;
+  public static Shifter shift;
+  public static OI oi;
 
-	Command autonomousCommand;
+  Command autonomousCommand;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
-	@Override
-	public void robotInit() {
-		drive = new DriveTrain();
-		slot  = new CoinSlot();
-		shoot = new Shooter();
-		climb = new Climber();
-		shift = new Shifter();
-		oi    = new OI();
-		
-		autonomousCommand = new Autonomous();
+  /**
+   * This function is run when the robot is first started up and should be
+   * used for any initialization code.
+   */
+  @Override
+  public void robotInit() {
+    drive = new DriveTrain();
+    slot  = new CoinSlot();
+    shoot = new Shooter();
+    climb = new Climber();
+    shift = new Shifter();
+    oi    = new OI();
 
-		SmartDashboard.putData(drive);
-		SmartDashboard.putData(slot );
-		SmartDashboard.putData(climb);
-		SmartDashboard.putData(shift);
-		SmartDashboard.putData(shoot);
-	}
+    autonomousCommand = new Autonomous();
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {}
+    SmartDashboard.putData(drive);
+    SmartDashboard.putData(slot );
+    SmartDashboard.putData(climb);
+    SmartDashboard.putData(shift);
+    SmartDashboard.putData(shoot);
+  }
 
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+  /**
+   * This function is called once each time the robot enters Disabled mode.
+   * You can use it to reset any subsystem information you want to clear when
+   * the robot is disabled.
+   */
+  @Override
+  public void disabledInit() {}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
-	@Override
-	public void autonomousInit() {
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
-		/*drive.gyro.reset();
-		drive.gyro.zeroYaw();
-		drive.gyro.resetDisplacement();*/
-	}
+  @Override
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	@Override
-	public void autonomousPeriodic() {
+  /**
+   * This autonomous (along with the chooser code above) shows how to select
+   * between different autonomous modes using the dashboard. The sendable
+   * chooser code works with the Java SmartDashboard. If you prefer the
+   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+   * getString code to get the auto name from the text box below the Gyro
+   *
+   * You can add additional auto modes by adding additional commands to the
+   * chooser code above (like the commented example) or additional comparisons
+   * to the switch structure below with additional strings & commands.
+   */
+  @Override
+  public void autonomousInit() {
+    // schedule the autonomous command (example)
+    if (autonomousCommand != null)
+      autonomousCommand.start();
+  }
 
-		
-		Scheduler.getInstance().run();
-		log();
-	}
+  /**
+   * This function is called periodically during autonomous
+   */
+  @Override
+  public void autonomousPeriodic() {
 
-	@Override
-	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		autonomousCommand.cancel();
-		
-	}
+    
+    Scheduler.getInstance().run();
+    log();
+  }
 
-	/**
-	 * This function is called periodically during operator control
-	 */
-	@Override
-	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-		log();
-	}
+  @Override
+  public void teleopInit() {
+    // This makes sure that the autonomous stops running when
+    // teleop starts running. If you want the autonomous to
+    // continue until interrupted by another command, remove
+    // this line or comment it out.
+    autonomousCommand.cancel();
+    
+  }
 
-	/**
-	 * This function is called periodically during test mode
-	 */
-	@Override
-	public void testPeriodic() {
-		shoot.setFly(-0.65);
-		shoot.setAgitate(0.5);
-		System.out.println("Right Encoder: " + drive.rightEncoder.getDistance());
-		System.out.println("Left Encoder: " + drive.leftEncoder.getDistance());
-	}
-	
-	private void log() {
-		drive.log();
-		slot .log();
-		climb.log();
-		shift.log();
-		shoot.log();
-	}
+  /**
+   * This function is called periodically during operator control
+   */
+  @Override
+  public void teleopPeriodic() {
+    Scheduler.getInstance().run();
+    log();
+  }
+
+  /**
+   * This function is called periodically during test mode
+   */
+  @Override
+  public void testPeriodic() {
+    shoot.setFly(-0.65);
+    shoot.setAgitate(0.5);
+    System.out.println("Right Encoder: " + drive.rightEncoder.getDistance());
+    System.out.println("Left Encoder: " + drive.leftEncoder.getDistance());
+  }
+  
+  private void log() {
+    drive.log();
+    slot .log();
+    climb.log();
+    shift.log();
+    shoot.log();
+  }
 }
